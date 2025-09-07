@@ -69,25 +69,42 @@
       transition: opacity 0.2s;
     }
 
-    /* Position popups for each arrow */
-    .arrow-left .arrow-info {
-      left: 110%;
-      bottom: 50%;
-      transform: translateY(50%);
+    /* Place arrows as a group at the bottom center of the content section */
+    .arrow-group {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 36px; /* space between arrows */
+      z-index: 20;
     }
-    .arrow-right .arrow-info {
-      right: 110%;
+    .arrow-group .arrow {
+      position: static; /* Remove absolute for grouped arrows */
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    /* Adjust info popup positions for grouped arrows */
+    .arrow-group .arrow-left .arrow-info {
       left: auto;
+      right: 110%;
       bottom: 50%;
       transform: translateY(50%);
     }
-    .arrow-up .arrow-info {
+    .arrow-group .arrow-right .arrow-info {
+      left: 110%;
+      right: auto;
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    .arrow-group .arrow-down .arrow-info {
       left: 50%;
       bottom: 110%;
       transform: translateX(-50%);
     }
 
-    .arrow-down {
+    .chevron-down {
         bottom: 10%;
         left: 50%;
         transform: translateX(-50%);
@@ -99,7 +116,7 @@
       display: block;
     }
 
-    .arrow-down {
+    .chevron-down {
       animation: bounce 1.2s infinite;
     }
     @keyframes bounce {
@@ -137,16 +154,40 @@
       text-align:center;
       position:relative;
     }
-    /* Place arrows at bottom of content section */
-    .content .arrow-left,
-    .content .arrow-right,
-    .content .arrow-up {
+    /* Place arrows as a group at the bottom center of the content section */
+    .arrow-group {
       position: absolute;
       bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 36px; /* space between arrows */
+      z-index: 20;
     }
-    .content .arrow-left { left: 15px;}
-    .content .arrow-right { right: 15px;}
-    .content .arrow-up { left: 50%; transform: translateX(-50%);}
+    .arrow-group .arrow {
+      position: static; /* Remove absolute for grouped arrows */
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    /* Adjust info popup positions for grouped arrows */
+    .arrow-group .arrow-left .arrow-info {
+      left: auto;
+      right: 110%;
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    .arrow-group .arrow-right .arrow-info {
+      left: 110%;
+      right: auto;
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    .arrow-group .arrow-down .arrow-info {
+      left: 50%;
+      bottom: 110%;
+      transform: translateX(-50%);
+    }
 
     .content h1 {
       color:#434d4e;
@@ -177,6 +218,10 @@
       background-clip: text;
       text-shadow:0 0 24px #c890a4, 0 0 12px #b1777c;
     }
+  
+    
+   
+    
   
 
     /* Footer */
@@ -226,6 +271,118 @@
       .hero h1 {font-size:2rem;}
       .content p {font-size:0.95rem; padding:1rem;}
     }
+
+    .arrow-group {
+      position: relative;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      z-index: 20;
+      width: 100%;
+    }
+    .arrow-group-arrows {
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+    .arrow-group .arrow {
+      position: static;
+      font-size: 2.5rem;
+      margin: 0 8px;
+    }
+    .arrow-group {
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .arrow-group-arrows {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    /* Add gap between content and arrow group */
+.arrow-group {
+  position: relative;
+  margin-top: 2.2rem; /* increased gap */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  z-index: 20;
+  width: 100%;
+}
+
+/* Ensure arrow group arrows are in a row and centered */
+.arrow-group-arrows {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+/* Fix arrow-info popup for grouped arrows */
+.arrow-group-arrows .arrow {
+  position: relative;
+  font-size: 2.5rem;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.arrow-group-arrows .arrow .arrow-info {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 110%;
+  transform: translateX(-50%);
+  background: #ea906d;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 14px;
+  font-size: 1rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 24px 0 #c6716a;
+  border: 2px solid #edc77d;
+  pointer-events: none;
+  opacity: 0.95;
+  font-family: "Patrick Hand", cursive;
+  transition: opacity 0.2s;
+  z-index: 100;
+}
+
+/* Position popups for left and right arrows */
+.arrow-group-arrows .arrow-left .arrow-info {
+  left: auto;
+  right: 110%;
+  bottom: 50%;
+  transform: translateY(50%);
+}
+.arrow-group-arrows .arrow-right .arrow-info {
+  left: 110%;
+  right: auto;
+  bottom: 50%;
+  transform: translateY(50%);
+}
+.arrow-group-arrows .arrow-down .arrow-info {
+  left: 50%;
+  bottom: 110%;
+  transform: translateX(-50%);
+}
+
+/* Show popup on hover/focus */
+.arrow-group-arrows .arrow:hover .arrow-info,
+.arrow-group-arrows .arrow:focus .arrow-info {
+  display: block;
+}
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -233,7 +390,7 @@
 </head>
 <body>
   <div class="hero">
-    <i class="fa-solid fa-chevron-down arrow arrow-down" id="scroll-down"></i>
+    <i class="fa-solid fa-chevron-down arrow chevron-down" id="scroll-down"></i>
     <!-- Fireflies -->
     <div class="firefly" style="top:30%; left:20%; animation-delay:0s;"></div>
     <div class="firefly" style="top:60%; left:40%; animation-delay:5s;"></div>
@@ -250,19 +407,25 @@
     <p>
       It's got a view of the mountain and everything… wow. There couldn't possibly be anything nefarious about it! The locals assure travelers that the pond is just fine. Absolutely nothing suspicious at all. Sure, sometimes the ripples spell out words like “RUN”… and sometimes the ducks quack in morse code… but other than that, it’s definitely cozy and safe.
     </p>
-    <!-- Arrows only appear in content section -->
-    <span class="fa-solid fa-arrow-left arrow arrow-left" tabindex="0" onclick="window.location.href='/scenes/1/'">
-      <span class="arrow-info">Splorgon 5</span>
-      <a href="/scenes/1/">Splorgon 5</a>
-    </span>
-    <span class="fa-solid fa-arrow-right arrow arrow-right" tabindex="0" onclick="window.location.href='/scenes/37/'">
-      <span class="arrow-info">Eastern Upside-Down Island</span>
-      <a href="/scenes/37/">Eastern Upside-Down Island</a>
-    </span>
-    <span class="fa-solid fa-arrow-down arrow arrow-up" tabindex="0" onclick="window.location.href='/scenes/87/'">
-      <span class="arrow-info">Pointy Dunes</span>
-      <a href="/scenes/87/">Pointy Dunes</a>
-    </span>
+    <!-- Grouped arrows just below the content -->
+    <div class="arrow-group">
+      <h2 class="arrow-group-title">Explore Further</h2>
+      <p class="arrow-group-desc">You see 3 paths leading away from the pond. Would you dare to follow one?</p>
+      <div class="arrow-group-arrows">
+        <span class="fa-solid fa-arrow-left arrow arrow-left" tabindex="0">
+          <span class="arrow-info">Splorgon 5</span>
+          <a href="/scenes/1/">Splorgon 5</a>
+        </span>
+        <span class="fa-solid fa-arrow-down arrow arrow-down" tabindex="0">
+          <span class="arrow-info">Pointy Dunes</span>
+          <a href="/scenes/87/">Pointy Dunes</a>
+        </span>
+        <span class="fa-solid fa-arrow-right arrow arrow-right" tabindex="0">
+          <span class="arrow-info">Eastern Upside-Down Island</span>
+          <a href="/scenes/37/">Eastern Upside-Down Island</a>
+        </span>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -273,6 +436,7 @@
 
 
     <script>
+        // TODO: music
       // Add scroll effect for main content
       window.addEventListener("scroll", () => {
         const content = document.querySelector(".content");
@@ -287,6 +451,17 @@
       document.getElementById("scroll-down").addEventListener("click", function() {
         document.getElementById("content").scrollIntoView({ behavior: "smooth" });
       });
+
+      // Make arrows clickable (since <a> is hidden)
+document.querySelectorAll('.arrow-group-arrows .arrow').forEach(function(el) {
+  el.addEventListener('click', function() {
+    var link = el.querySelector('a');
+    if (link && link.href) {
+      window.location.href = link.href;
+    }
+  });
+});
     </script>
   </body>
 </html>
+
