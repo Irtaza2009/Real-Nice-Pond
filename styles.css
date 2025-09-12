@@ -235,11 +235,23 @@
     /* Footer */
     footer {
     background: #c6716a;
-    color: #ea906d;
+    color: #edc77d;
     padding: 1rem;
     text-align: center;
     font-size: 0.8rem;
     font-family: "Patrick Hand", cursive;
+    }
+
+    footer a {
+    color: #f3df6a;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    footer a:hover {
+    color: #fff176;
+    text-shadow: 0 0 4px #f3df6a, 0 0 6px #edc77d;
     }
 
     /* Fireflies */
