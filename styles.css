@@ -499,3 +499,22 @@
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     }
+
+    /* Pixel Sparks */
+    .spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #f3df6a;
+    opacity: 1;
+    border-radius: 1px;
+    pointer-events: none;
+    animation: spark-fly 600ms forwards;
+    }
+
+    @keyframes spark-fly {
+    to {
+        transform: translate(var(--dx), var(--dy));
+        opacity: 0;
+    }
+    }
