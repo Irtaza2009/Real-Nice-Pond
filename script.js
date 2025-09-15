@@ -1,11 +1,8 @@
-
-// Done: music fade-in
-// Done: firefly click effect
-
-// TODO: Curtain animation on overlay: Right now it just hides —  animate it like two curtains sliding sideways.
-// TODO: Add a pixelated cursor so the whole site feels like a game.
+// Done: Add a pixelated cursor so the whole site feels like a game.
 // TODO: Click on the pond → ripple animation.
-// TODO: Mute/unmute button for audio.
+// TODO: Add sound effects for firefly clicks.
+// TODO: Add easter egg count.
+// Done: Mute/unmute button for audio.
 
 // Add scroll effect for main content
 window.addEventListener("scroll", () => {
@@ -101,4 +98,20 @@ document.querySelectorAll(".firefly").forEach((firefly) => {
         }, 600);
     }
     });
+});
+
+// Mute/Unmute button logic
+const muteBtn = document.getElementById("mute-btn");
+const muteIcon = muteBtn.querySelector("i");
+
+muteBtn.addEventListener("click", () => {
+  if (audio.muted) {
+    audio.muted = false;
+    muteIcon.classList.remove("fa-volume-xmark");
+    muteIcon.classList.add("fa-volume-high");
+  } else {
+    audio.muted = true;
+    muteIcon.classList.remove("fa-volume-high");
+    muteIcon.classList.add("fa-volume-xmark");
+  }
 });
