@@ -1,8 +1,12 @@
-// Done: Add a pixelated cursor so the whole site feels like a game.
 // TODO: Click on the pond → ripple animation.
 // TODO: Add sound effects for firefly clicks.
 // TODO: Add easter egg count.
+// TODO: Firefly counter.
 // Done: Mute/unmute button for audio.
+// Done: Add a pixelated cursor.
+// Done: Made the fireflies look more like fireflies.
+// Done: Parallax effect for background.
+
 
 // Add scroll effect for main content
 window.addEventListener("scroll", () => {
@@ -64,27 +68,41 @@ overlay.addEventListener("click", () => {
 });
 
 // Firefly
-document.querySelectorAll(".firefly").forEach((firefly) => {
-    firefly.addEventListener("click", (e) => {
 
-    const rect = firefly.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
 
-    // remove firefly
-    firefly.remove();
 
-    // create sparks
-    for (let i = 0; i < 8; i++) {
+// Firefly respawn system
+function spawnFirefly(delay = 0) {
+  const firefly = document.createElement("div");
+  firefly.classList.add("firefly");
+
+// random position anywhere in the viewport
+firefly.style.top = `${Math.random() * 80}%`;
+firefly.style.left = `${Math.random() * 80}%`;
+
+  // random animation offset
+  firefly.style.animationDelay = `${Math.random() * 10}s`;
+
+  setTimeout(() => {
+    document.querySelector(".hero").appendChild(firefly);
+
+    firefly.addEventListener("click", () => {
+      const rect = firefly.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      // remove firefly
+      firefly.remove();
+
+      // create sparks
+      for (let i = 0; i < 8; i++) {
         const spark = document.createElement("div");
         spark.classList.add("spark");
         document.body.appendChild(spark);
 
-        // place at firefly center
         spark.style.left = `${x}px`;
         spark.style.top = `${y}px`;
 
-        // random scatter
         const angle = (i / 8) * (2 * Math.PI);
         const distance = 30 + Math.random() * 20;
         const dx = Math.cos(angle) * distance + "px";
@@ -93,12 +111,20 @@ document.querySelectorAll(".firefly").forEach((firefly) => {
         spark.style.setProperty("--dx", dx);
         spark.style.setProperty("--dy", dy);
 
-        setTimeout(() => {
-        spark.remove();
-        }, 600);
-    }
+        setTimeout(() => spark.remove(), 600);
+      }
+
+      // respawn another after 2s
+      spawnFirefly(2000);
     });
-});
+  }, delay);
+}
+
+// Initial fireflies
+spawnFirefly();
+spawnFirefly();
+spawnFirefly();
+
 
 // Mute/Unmute button logic
 const muteBtn = document.getElementById("mute-btn");
