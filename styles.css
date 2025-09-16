@@ -563,3 +563,26 @@ color: #434d4e;
 transform: scale(1.1);
 }
 
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 2px solid;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: rippleAnim 0.8s ease-out forwards;
+}
+
+@keyframes rippleAnim {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+

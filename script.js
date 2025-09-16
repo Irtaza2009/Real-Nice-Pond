@@ -1,11 +1,10 @@
-// TODO: Click on the pond → ripple animation.
 // TODO: Add sound effects for firefly clicks.
 // TODO: Add easter egg count.
 // TODO: Firefly counter.
-// Done: Mute/unmute button for audio.
-// Done: Add a pixelated cursor.
-// Done: Made the fireflies look more like fireflies.
+// TODO: Click on the pond → ripple animation.
+
 // Done: Parallax effect for background.
+// Done: Ripple effect on mouse move.
 
 
 // Add scroll effect for main content
@@ -140,4 +139,36 @@ muteBtn.addEventListener("click", () => {
     muteIcon.classList.remove("fa-volume-high");
     muteIcon.classList.add("fa-volume-xmark");
   }
+});
+
+
+// Ripple effect on mouse move
+let lastRippleTime = 0;
+
+document.addEventListener("mousemove", (e) => {
+  const now = Date.now();
+  if (now - lastRippleTime < 180) return; // limit to ~6 ripples/sec
+  lastRippleTime = now;
+
+  // Sample color beneath cursor (fallback)
+  const element = document.elementFromPoint(e.clientX, e.clientY);
+  let color = "rgba(200,200,200,0.8)";
+
+  if (element) {
+    const style = window.getComputedStyle(element);
+    if (style.backgroundColor !== "rgba(0, 0, 0, 0)") {
+      color = style.backgroundColor;
+    }
+  }
+
+  // Create ripple
+  const ripple = document.createElement("div");
+  ripple.classList.add("ripple");
+  ripple.style.left = `${e.pageX}px`;
+  ripple.style.top = `${e.pageY}px`;
+  ripple.style.borderColor = color;
+
+  document.body.appendChild(ripple);
+
+  setTimeout(() => ripple.remove(), 800);
 });
