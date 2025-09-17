@@ -1,10 +1,8 @@
-// TODO: Add sound effects for firefly clicks.
-// TODO: Add easter egg count.
-// TODO: Firefly counter.
+// Done: Add sound effects for firefly clicks.
+// Done: Make firefly info text lead to the fireflies.
+// Done: Firefly counter.
+// Done: 10 fireflies rickroll.
 // TODO: Click on the pond → ripple animation.
-
-// Done: Parallax effect for background.
-// Done: Ripple effect on mouse move.
 
 
 // Add scroll effect for main content
@@ -26,6 +24,16 @@ document
         .scrollIntoView({ behavior: "smooth" });
     });
 
+// Scroll to hero when firefly-arrow is clicked
+document
+    .getElementById("firefly-arrow")
+    .addEventListener("click", function () {
+    document
+        .getElementById("hero")
+        .scrollIntoView({ behavior: "smooth" });
+    });
+
+
 // Make arrows clickable (since <a> is hidden)
 document
     .querySelectorAll(".arrow-group-arrows .arrow")
@@ -43,8 +51,8 @@ function fadeInAudio(audio, duration = 3000) {
   audio.play();
   let step = 0.05;
   let interval = setInterval(() => {
-    if (audio.volume < 1) {
-      audio.volume = Math.min(1, audio.volume + step);
+    if (audio.volume < 0.5) {
+      audio.volume = Math.min(0.5, audio.volume + step);
     } else {
       clearInterval(interval);
     }
@@ -55,6 +63,7 @@ function fadeInAudio(audio, duration = 3000) {
 // Overlay click -> reveal + play audio
 const overlay = document.getElementById("overlay");
 const audio = document.querySelector("audio");
+
 
 overlay.addEventListener("click", () => {
     overlay.classList.add("open");
@@ -68,6 +77,7 @@ overlay.addEventListener("click", () => {
 
 // Firefly
 
+let fireflyClicks = 0; // counter
 
 
 // Firefly respawn system
@@ -92,6 +102,21 @@ firefly.style.left = `${Math.random() * 80}%`;
 
       // remove firefly
       firefly.remove();
+
+      // play sparkle sound
+      const sparkle = new Audio("https://hc-cdn.hel1.your-objectstorage.com/s/v3/01a8c2f72077d10dbd075ae7c010b07dd2ce5984_sparkle_audio.mp4");
+      sparkle.volume = 0.5; // softer so it feels magical
+      sparkle.play().catch(err => console.log("Sound blocked:", err));
+
+
+        // update counter
+        fireflyClicks++;
+        document.getElementById("firefly-counter").textContent = `Fireflies: ${fireflyClicks}`;
+
+        // Rickroll easter egg 🎶
+        if (fireflyClicks === 10) {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
 
       // create sparks
       for (let i = 0; i < 8; i++) {

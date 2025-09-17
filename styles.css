@@ -543,7 +543,7 @@ to {
 
 /* Mute Button */
 .mute-btn {
-position: fixed;
+position: absolute;
 top: 16px;
 right: 16px;
 z-index: 10000;
@@ -586,3 +586,24 @@ transform: scale(1.1);
   }
 }
 
+.firefly-counter {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(67, 77, 78, 0.2);
+  border: 2px solid #edc77d;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-family: "Pixelify Sans", sans-serif;
+  color: #f3df6a;
+  z-index: 10001;
+  text-shadow: 0 0 6px #edc77d;
+}
+
+.firefly-arrow {
+  font-weight: bold;
+  margin-top: 1rem;
+  animation: bounce 1.2s infinite ease-in-out;
+  text-shadow: 0 0 5px #a8a058, 0 0 10px #e9c568; /* glowing effect */
+}
