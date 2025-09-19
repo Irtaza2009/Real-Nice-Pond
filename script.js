@@ -51,8 +51,8 @@ function fadeInAudio(audio, duration = 3000) {
   audio.play();
   let step = 0.05;
   let interval = setInterval(() => {
-    if (audio.volume < 0.5) {
-      audio.volume = Math.min(0.5, audio.volume + step);
+    if (audio.volume < 0.8) {
+      audio.volume = Math.min(0.8, audio.volume + step);
     } else {
       clearInterval(interval);
     }
@@ -105,7 +105,7 @@ firefly.style.left = `${Math.random() * 80}%`;
 
       // play sparkle sound
       const sparkle = new Audio("https://hc-cdn.hel1.your-objectstorage.com/s/v3/01a8c2f72077d10dbd075ae7c010b07dd2ce5984_sparkle_audio.mp4");
-      sparkle.volume = 0.5; // softer so it feels magical
+      sparkle.volume = 0.9; // softer so it feels magical
       sparkle.play().catch(err => console.log("Sound blocked:", err));
 
 
